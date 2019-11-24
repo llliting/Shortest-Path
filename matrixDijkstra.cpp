@@ -7,7 +7,10 @@
 
 using namespace std;
 
-int main(){
-
+int main(int argc, char* argv[]){
+    string inGraph = argv[1];
+    string output = argv[2];
+    string source = argv[3];
+    string destination = argv[4];
 
 }
