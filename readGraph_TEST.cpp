@@ -1,6 +1,10 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
+#include "readGraph.hpp"
 #include <string>
+#include <iostream>
+#include <fstream>
+
 using namespace std;
 
 
@@ -12,17 +16,9 @@ TEST_CASE("TESTING readGraph Class ")
         double** matrix;
         string* vLabel;
         string** eLabel;
-        int** adj, edgeList;
-        double** weights;
-        int* lengths; 
-        int numEdges;
-
-
-
-
-
-
-
+        ifstream input;
+        input.open("graph.txt");
+        int numV = readGraph(input, matrix, vLabel, eLabel);
+        REQUIRE(numV == 4);
     }
-
 }
