@@ -48,21 +48,18 @@ int getPath(int source, int dest, const int* prev, int*& path){
     int length = 1;
     int temp = prev[dest];
 
-
-
     while(temp != source){
         temp = prev[temp];
         length ++;
-        cout << length << endl;
     }
 
-    path = new int[length];
+    path = new int[length+1];
+    path[0] = source;
     temp = dest;
     for(int i = 0; i < length; i ++){
-        path[length - 1 - i] = prev[dest];
-        temp = prev[dest];
+        path[length - i] = temp;
+        temp = prev[temp];
     }
-    return length;
-    
+    return length+1;
 }
 

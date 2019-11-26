@@ -8,22 +8,28 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
+    if (argc != 5) {
+        cout << "Wrong Number of Command Line Arguments Passed";
+        return 0;
+    }
+
     string inGraph = argv[1];
     string output = argv[2];
     string source_str = argv[3];
-    string dist_str = argv[4);
+    string dist_str = argv[4];
     int source, dist;
-    double* distination;
+    double* distination, **m;
     ifstream fin;
+    ofstream fout;
     fin.open(inGraph);
-    string* vLabel, *eLabel;
-    double** m;
+    fout.open(output);
+    string* vLabel, **eLabel;
     int* prev, *path;
     int numVer = readGraph(fin, m, vLabel, eLabel);
     for(int i = 0; i < numVer; i++){
         if(vLabel[i] == source_str)
             source = i;
-        else if(vLabel[i] == dist_str)
+        if(vLabel[i] == dist_str)
             dist = i;
     }
 
@@ -37,6 +43,11 @@ int main(int argc, char* argv[]){
     cout << "number of nanoseconds for djkstra's algo: " << elapsed << endl;
 
     int len = getPath(source, dist, prev, path);
+    fout << len+1 << " " << len-1 << endl;
+    for(int i = 0; i < numVer; i ++)
+        fout << vLabel[i] << endl;
 
+    for(int i = 0; i < len-1; i++)
+        fout << path[i] << " " << path[i+1] << " " << m[path[i]][path[i+1]] << " " << eLabel[path[i]][path[i+1]] << endl;
 
 }

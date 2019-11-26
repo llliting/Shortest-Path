@@ -15,3 +15,9 @@ readgraph: readGraph_TEST.cpp readGraph.o
 shortestpath: shortestPath_TEST.cpp shortestPath.o readGraph.o
 		$(CC) $(FLAGS) -o shortestPath.exe shortestPath_TEST.cpp shortestPath.o readGraph.o
 		./shortestPath.exe
+
+matrixd: matrixDijkstra.cpp readGraph.o shortestPath.o
+		$(CC) $(FLAGS) -o matrixdijkstra.exe matrixDijkstra.cpp readGraph.o shortestPath.o
+		
+clean:
+		rm -f *.exe, *.o

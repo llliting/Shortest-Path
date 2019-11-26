@@ -22,15 +22,16 @@ TEST_CASE("TESTING shortestPath Class ")
         ifstream input;
         input.open("graph.txt");
         int numV = readGraph(input, matrix, vLabel, eLabel);
-        dijkstra(matrix, numV, 1, dist, prev);
-        //REQUIRE(dist[0] == 9.5);
-        //REQUIRE(prev[2] == 1);
-        
+        int source = 3;
+        dijkstra(matrix, numV, source, dist, prev);
+        REQUIRE(dist[0] == 9.5);
+        REQUIRE(prev[2] == 1);
         int* path;
-        //int num = getPath(1, 3, prev, path);
-        //cout << num << endl;
+        int num = getPath(source, 0, prev, path);
+        REQUIRE(num == 4);
+        //cout << path[0] << "->" << path[1] << "->" << path [2] << "->" << path[3]<< endl;
         
-        for(int i = 0; i < 4; i ++){
+        /*for(int i = 0; i < 4; i ++){
             dijkstra(matrix, numV, i, dist, prev);
             cout << "\n------------TESTING " << i << "------------" <<endl;     
             for(int i = 0; i < 4; i ++)
@@ -38,7 +39,7 @@ TEST_CASE("TESTING shortestPath Class ")
             cout << endl;
             
         }
-            /*cout << "\n------------TESTING " << i << "------------" <<endl;
+            cout << "\n------------TESTING " << i << "------------" <<endl;
             dijkstra(matrix, numV, i, dist, prev);
             cout << "0: " <<  dist[0] << "      " << prev[0] << endl;
             cout << "1: " <<  dist[1] << "      " << prev[1] << endl;
@@ -50,7 +51,7 @@ TEST_CASE("TESTING shortestPath Class ")
         
         delete [] dist;
         delete [] prev;
-
+        delete [] path;
 
     }
 }
