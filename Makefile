@@ -5,7 +5,13 @@ DEBUG = --DDEBUG -g
 readGraph.o: readGraph.cpp readGraph.hpp
 		$(CC) $(FLAGS) -c readGraph.cpp
 
+shortestPath.o: shortestPath.cpp shortestPath.hpp
+		$(CC) $(FLAGS) -c shortestPath.cpp
 
 readgraph: readGraph_TEST.cpp readGraph.o
 		$(CC) $(FLAGS) -o readGraph.exe readGraph_TEST.cpp readGraph.o
 		./readGraph.exe
+
+shortestpath: shortestPath_TEST.cpp shortestPath.o readGraph.o
+		$(CC) $(FLAGS) -o shortestPath.exe shortestPath_TEST.cpp shortestPath.o readGraph.o
+		./shortestPath.exe
