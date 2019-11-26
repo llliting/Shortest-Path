@@ -10,8 +10,9 @@ using namespace std;
 int main(int argc, char* argv[]){
     string inGraph = argv[1];
     string output = argv[2];
-    int source = stoi(argv[3]);
-    int dist = stoi(argv[4]);
+    string source_str = argv[3];
+    string dist_str = argv[4);
+    int source, dist;
     double* distination;
     ifstream fin;
     fin.open(inGraph);
@@ -19,6 +20,12 @@ int main(int argc, char* argv[]){
     double** m;
     int* prev, *path;
     int numVer = readGraph(fin, m, vLabel, eLabel);
+    for(int i = 0; i < numVer; i++)
+        if(vLabel[i] == source_str)
+            source = i;
+        else if(vLabel[i] == dist_str)
+            dist = i;
+
 
     auto start = chrono::system_clock::now();
     dijkstra(m, numVer, source, distination, prev);

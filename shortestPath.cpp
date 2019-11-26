@@ -20,8 +20,6 @@ void dijkstra(const double* const * matrix, int numVertices, int source, double*
 
     for(int i = 0; i < numVertices-1; i++){
 
- 
-
         //update adjacent vertices
         for(int j = 0; j < numVertices; j++){
             double checkDist = matrix[curr][j] + dist[curr];
@@ -32,7 +30,7 @@ void dijkstra(const double* const * matrix, int numVertices, int source, double*
         }
 
         //find the shortest path 
-        double min = std::numeric_limits<double>::infinity();
+        double min = numeric_limits<double>::infinity();
         //int minIdx;
         for(int j = 0; j < numVertices; j++){
             if( !sptSet[j] && dist[j] <= min){
@@ -41,12 +39,6 @@ void dijkstra(const double* const * matrix, int numVertices, int source, double*
             }
         }
         sptSet[curr] = true;
-        
-
-
-
-        
-        
     }
 }
 
