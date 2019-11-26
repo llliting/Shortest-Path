@@ -11,7 +11,7 @@ void dijkstra(const double* const * matrix, int numVertices, int source, double*
     bool sptSet[numVertices];//if the current vertex is in the final path
     for(int i = 0; i < numVertices; i++){
         dist[i] = numeric_limits<double>::infinity();
-        prev[i] = numeric_limits<int>::quiet_NaN();
+        prev[i] = -1;
         sptSet[i] = false;
     }
     dist[source] = 0;
@@ -46,9 +46,12 @@ void dijkstra(const double* const * matrix, int numVertices, int source, double*
 
 int getPath(int source, int dest, const int* prev, int*& path){
     int length = 1;
-    int temp = dest;
+    int temp = prev[dest];
+
+
+
     while(temp != source){
-        int temp = prev[temp];
+        temp = prev[temp];
         length ++;
         cout << length << endl;
     }

@@ -22,6 +22,7 @@ TEST_CASE("TESTING shortestPath Class ")
         ifstream input;
         input.open("graph.txt");
         int numV = readGraph(input, matrix, vLabel, eLabel);
+        dijkstra(matrix, numV, 1, dist, prev);
         //REQUIRE(dist[0] == 9.5);
         //REQUIRE(prev[2] == 1);
         
@@ -32,7 +33,7 @@ TEST_CASE("TESTING shortestPath Class ")
         for(int i = 0; i < 4; i ++){
             dijkstra(matrix, numV, i, dist, prev);
             cout << "\n------------TESTING " << i << "------------" <<endl;     
-            for(int i = 0; i < 6; i ++)
+            for(int i = 0; i < 4; i ++)
                 cout  << prev[i] << " ";
             cout << endl;
             

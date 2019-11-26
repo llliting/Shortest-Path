@@ -20,11 +20,12 @@ int main(int argc, char* argv[]){
     double** m;
     int* prev, *path;
     int numVer = readGraph(fin, m, vLabel, eLabel);
-    for(int i = 0; i < numVer; i++)
+    for(int i = 0; i < numVer; i++){
         if(vLabel[i] == source_str)
             source = i;
         else if(vLabel[i] == dist_str)
             dist = i;
+    }
 
 
     auto start = chrono::system_clock::now();
