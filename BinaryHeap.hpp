@@ -3,6 +3,15 @@
 
 
 class BinaryHeap{
+    private:
+        void heapify(int i);
+        void swap(int a, int b);
+        double* heap;
+        int* items;
+        int* loc;
+        int size;
+        
+
     public:
         BinaryHeap(const double* priorities, int numItems);
         ~BinaryHeap();
@@ -15,9 +24,6 @@ class BinaryHeap{
         int getItem(int pos) const;
         int getPos(int item) const;
 
-
-
-    
 };
 
 #endif 
