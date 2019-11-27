@@ -8,6 +8,9 @@ readGraph.o: readGraph.cpp readGraph.hpp
 shortestPath.o: shortestPath.cpp shortestPath.hpp
 		$(CC) $(FLAGS) -c shortestPath.cpp
 
+BinaryHeap.o: BinaryHeap.cpp BinaryHeap.hpp
+		$(CC) $(FLAGS) -c BinaryHeap.cpp
+
 readgraph: readGraph_TEST.cpp readGraph.o
 		$(CC) $(FLAGS) -o readGraph.exe readGraph_TEST.cpp readGraph.o
 		./readGraph.exe
@@ -18,6 +21,9 @@ shortestpath: shortestPath_TEST.cpp shortestPath.o readGraph.o
 
 matrixd: matrixDijkstra.cpp readGraph.o shortestPath.o
 		$(CC) $(FLAGS) -o matrixdijkstra.exe matrixDijkstra.cpp readGraph.o shortestPath.o
+
+binaryheap: BinaryHeap_TEST.cpp BinaryHeap.o
+		$(CC) $(FLAGS) -o binaryheap.exe BinaryHeap_TEST.cpp BinaryHeap.o
 		
 clean:
 		rm -f *.exe, *.o
