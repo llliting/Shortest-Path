@@ -14,10 +14,12 @@ TEST_CASE("TESTING BinaryHeap Class ")
     {   
         double prio[7] = {9.0, 4.0, 2.0, 3.0, 7.0, 8.0, 2.0};
         BinaryHeap bh = BinaryHeap(prio, 7);
-        cout << "items: ";
-        for(int i = 0; i < 7; i++){
-            cout << bh.items[i] << " ";
-        }
-        cout << endl;
+        REQUIRE(bh.getMin() == 2);
+        REQUIRE(bh.contains(3));
+        REQUIRE(!bh.contains(20));
+        bh.popMin();
+        REQUIRE(bh.getPriority(0) == 9);
+        REQUIRE(bh.getSize() == 6);
+    
     }
 }
