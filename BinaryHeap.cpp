@@ -1,9 +1,5 @@
 #include "BinaryHeap.hpp"
 
-using namespace std;
-
-
-
 BinaryHeap::BinaryHeap(const double* priorities, int numItems){
     heap = new double[numItems];
     items = new int[numItems];

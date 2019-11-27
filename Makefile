@@ -24,6 +24,11 @@ matrixd: matrixDijkstra.cpp readGraph.o shortestPath.o
 
 binaryheap: BinaryHeap_TEST.cpp BinaryHeap.o
 		$(CC) $(FLAGS) -o binaryheap.exe BinaryHeap_TEST.cpp BinaryHeap.o
+		./binaryheap.exe
+
+test: test.cpp BinaryHeap.o
+		$(CC) $(FLAGS) -o test.exe test.cpp BinaryHeap.o
+		./test.exe
 		
 clean:
 		rm -f *.exe, *.o
