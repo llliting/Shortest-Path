@@ -22,6 +22,7 @@ TEST_CASE("TESTING BinaryHeap Class ")
         REQUIRE(bh.getPriority(0) == 9);
         REQUIRE(bh.getSize() == 6);
         REQUIRE(bh.getPos(0) == 5);
+        bh.decreasePriority(0,0);
     
     }
 }

@@ -20,7 +20,6 @@ BinaryHeap::BinaryHeap(const double* priorities, int numItems){
 }
 
 void BinaryHeap::heapify(int pos){
-    //cout << "-------heapified --------" << endl;
     int lpos = 2 * pos + 1;
     int rpos = 2 * pos + 2; 
     if(lpos >= size)
@@ -35,21 +34,11 @@ void BinaryHeap::heapify(int pos){
         int minChild = lpos;
         if(heap[lpos] > heap[rpos])
             minChild = rpos;
-        /*cout << "lpos: " << lpos << "   rpos: " << rpos << endl;
-        cout << "l: " << heap[lpos] << "  r: " << heap[rpos] << endl;
-        cout << "minChild: " << minChild << endl;
-        cout <<"min prio: "<< heap[minChild] <<  " pos prio: " << heap[pos] << endl;*/
         
         if(heap[minChild] < heap[pos]){
             swap(minChild, pos);
             heapify(minChild);
         }
-
-    /*cout << "\nheap: ";
-        for(int i = 0; i < 7; i++){
-            cout << heap[i] << " ";
-        }
-        cout << "\n"<<endl;*/
         return;
         
     }

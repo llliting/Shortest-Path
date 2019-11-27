@@ -29,6 +29,7 @@ TEST_CASE("TESTING shortestPath Class ")
         int* path;
         int num = getPath(source, 0, prev, path);
         REQUIRE(num == 4);
+        
         //cout << path[0] << "->" << path[1] << "->" << path [2] << "->" << path[3]<< endl;
         
         /*for(int i = 0; i < 4; i ++){
