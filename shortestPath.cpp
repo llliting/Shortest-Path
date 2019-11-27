@@ -63,3 +63,7 @@ int getPath(int source, int dest, const int* prev, int*& path){
     return length+1;
 }
 
+
+void dijkstra(const int* const * adj, const double* const * weights, const int* lengths, int numVertices, int source, double*& dist, int*& prev){
+    
+}
