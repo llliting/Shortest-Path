@@ -10,7 +10,8 @@ int main(){
     //cout << " min :  " << bh.getMin() << endl;
     //cout << "contain " << bh.contains(10) << endl; 
    // bh.popMin();
-    bh.decreasePriority(0,0);
+    //bh.decreasePriority(0,0);
+    cout << bh.getItem(0) << endl;
     cout << "size: " << bh.getSize() << endl;
         /*cout << "items: ";
         for(int i = 0; i < 7; i++){

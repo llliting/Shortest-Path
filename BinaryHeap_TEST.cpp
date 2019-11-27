@@ -17,9 +17,11 @@ TEST_CASE("TESTING BinaryHeap Class ")
         REQUIRE(bh.getMin() == 2);
         REQUIRE(bh.contains(3));
         REQUIRE(!bh.contains(20));
+        REQUIRE(bh.getItem(0) == 2);
         bh.popMin();
         REQUIRE(bh.getPriority(0) == 9);
         REQUIRE(bh.getSize() == 6);
+        REQUIRE(bh.getPos(0) == 5);
     
     }
 }
