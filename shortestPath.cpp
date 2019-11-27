@@ -2,7 +2,7 @@
 #include <string>
 #include <limits>
 #include <iostream>
-
+#include "BinaryHeap.hpp"
 using namespace std;
 
 void dijkstra(const double* const * matrix, int numVertices, int source, double*& dist, int*& prev){
@@ -65,5 +65,30 @@ int getPath(int source, int dest, const int* prev, int*& path){
 
 
 void dijkstra(const int* const * adj, const double* const * weights, const int* lengths, int numVertices, int source, double*& dist, int*& prev){
-    
+    dist = new double[numVertices];
+	prev = new int[numVertices];
+	for (int i = 0; i < numVertices; i++){
+		dist[i] = numeric_limits<double>::infinity();
+		prev[i] = -1;
+	}
+    BinaryHeap heap = BinaryHeap(dist, numVertices);
+    heap.decreasePriority(source,0);
+    heap.popMin();
+    dist[source] = 0;
+    prev[source] = source;
+
+    int curr = source;
+    for(int i = 1; i < numVertices; i++){
+		for(int j = 0; j < lengths[curr] ;j++){
+            double update = dist[curr] + weights[curr][j];
+			if(heap.contains(adj[curr][j]) && heap.getPriority(adj[curr][j])){
+                heap.decreasePriority(adj[curr][j], update);
+                prev[adj[curr][j]] = curr;
+            }		
+		}
+
+        curr = heap.getMin();
+        dist[curr] = heap.getPriority(curr);
+        heap.popMin();
+    }
 }

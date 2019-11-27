@@ -2,18 +2,13 @@
 #include <chrono>
 #include "readGraph.hpp"
 #include "shortestPath.hpp"
+#include "BinaryHeap.hpp"
 #include <fstream>
 #include <string>
 
 using namespace std;
 
 
-void dijkstra(const int* const * adj, const double* const * weights, 
-const int* lengths, int numVertices, int source, double*& dist, int*& prev);
-
-
-int readGraph(ifstream& fin, int**& adj, double**& weights, int*& lengths,
-string*& vLabels, string**& eLabels);
 
 
 int main(int argc, char* argv[]){
@@ -58,6 +53,6 @@ int main(int argc, char* argv[]){
         fout << vLabel[i] << endl;
 
     for(int i = 0; i < len-1; i++)
-        fout << path[i] << " " << path[i+1] << " " << m[path[i]][path[i+1]] << " " << eLabel[path[i]][path[i+1]] << endl;
+        fout << path[i] << " " << path[i+1] << " " << adj[path[i]][path[i+1]] << " " << eLabel[path[i]][path[i+1]] << endl;
 
 }

@@ -2,6 +2,8 @@
 
 #include <fstream>
 #include <string>
+#include "BinaryHeap.hpp"
+
 
 using namespace std;
 
