@@ -7,6 +7,7 @@ class BinaryHeap{
     public:
         void heapify(int i);
         void swap(int a, int b);
+        void bubbleUp(int idx);
         double* heap;
         int* items;
         int* loc;
