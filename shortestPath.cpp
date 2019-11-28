@@ -71,19 +71,25 @@ void dijkstra(const int* const * adj, const double* const * weights, const int* 
 		dist[i] = numeric_limits<double>::infinity();
 		prev[i] = -1;
 	}
+
+
     BinaryHeap heap = BinaryHeap(dist, numVertices);
     heap.decreasePriority(source,0);
     heap.popMin();
     dist[source] = 0;
     prev[source] = source;
 
+
+
+
     int curr = source;
     for(int i = 1; i < numVertices; i++){
 		for(int j = 0; j < lengths[curr] ;j++){
             double update = dist[curr] + weights[curr][j];
-			if(heap.contains(adj[curr][j]) && heap.getPriority(adj[curr][j])){
+			if(heap.contains(adj[curr][j]) && update < heap.getPriority(adj[curr][j])){
                 heap.decreasePriority(adj[curr][j], update);
                 prev[adj[curr][j]] = curr;
+                dist[adj[curr][j]] = update;
             }		
 		}
 
@@ -91,4 +97,7 @@ void dijkstra(const int* const * adj, const double* const * weights, const int* 
         dist[curr] = heap.getPriority(curr);
         heap.popMin();
     }
+
+    
+
 }

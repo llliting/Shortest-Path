@@ -38,7 +38,6 @@ int main(int argc, char* argv[]){
             dist = i;
     }
 
-
     auto start = chrono::system_clock::now();
     dijkstra(adj, weights, lengths, numVer, source, distination, prev);
     auto end = chrono::system_clock::now();
