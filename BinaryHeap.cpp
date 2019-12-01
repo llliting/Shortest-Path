@@ -74,7 +74,7 @@ void BinaryHeap::popMin(){
     items[0] = items[size-1];
     loc[items[0]] = 0;
     heapify(0);
-    size --;
+    //size --;
 }
 
 

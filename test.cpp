@@ -11,7 +11,7 @@ int main(){
     //cout << "contain " << bh.contains(10) << endl; 
    // bh.popMin();
    cout << "======================decrease prio ============================" << endl;
-    bh.decreasePriority(0,0);
+    bh.decreasePriority(1,0);
     //cout << bh.getItem(0) << endl;
     //cout << "size: " << bh.getSize() << endl;
         /*cout << "items: ";

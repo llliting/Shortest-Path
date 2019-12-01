@@ -3,8 +3,8 @@
 
 
 class BinaryHeap{
-    private:
-    //public:
+    //private:
+    public:
         void heapify(int i);
         void swap(int a, int b);
         void bubbleUp(int idx);
@@ -14,7 +14,7 @@ class BinaryHeap{
         int size;
         
 
-    public:
+   // public:
         BinaryHeap(const double* priorities, int numItems);
         ~BinaryHeap();
         int getMin() const;
