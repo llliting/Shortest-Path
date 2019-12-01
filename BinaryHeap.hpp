@@ -12,6 +12,7 @@ class BinaryHeap{
         int* items;
         int* loc;
         int size;
+        int num;
         
 
    // public:

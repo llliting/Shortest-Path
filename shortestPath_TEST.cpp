@@ -53,14 +53,12 @@ TEST_CASE("TESTING shortestPath Class ")
         input.open("graph.txt");
         int numV = readGraph(input, adj, weights, lengths, vLabels, eLabels);
         REQUIRE(numV == 4);
-        //int source = 3;
-        //dijkstra(adj, weights, lengths, numV,0, dist, prev);
-         //   for(int j = 0; j < 4; j ++)
-             //   cout << dist[j] << " ";
-           // cout << endl;
+        int source = 3;
+        dijkstra(adj, weights, lengths, numV,3, dist, prev);
+  
        
 
-        
+        /*
         for(int i = 0; i < 4; i ++){
             dijkstra(adj, weights, lengths, numV, i, dist, prev);
             cout<< " --------" << i << "-----------" << endl;
@@ -72,10 +70,11 @@ TEST_CASE("TESTING shortestPath Class ")
                 cout << prev[j] << " ";
             cout << endl;
         } 
+        */
         
-        //REQUIRE(dist[0] == 9.5);
-        //REQUIRE(prev[2] == 1);
-        //int* path;
+        REQUIRE(dist[0] == 9.5);
+        REQUIRE(prev[2] == 1);
+        int* path;
         //int num = getPath(source, 0, prev, path);
         //REQUIRE(num == 4);
         

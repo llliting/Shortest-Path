@@ -12,6 +12,7 @@ BinaryHeap::BinaryHeap(const double* priorities, int numItems){
         heap[i] = priorities[i];
     }
     size = numItems;
+    num = numItems;
     for(int i = (numItems/2) - 1; i >= 0; i --)
         heapify(i);
         
@@ -22,9 +23,9 @@ BinaryHeap::BinaryHeap(const double* priorities, int numItems){
 void BinaryHeap::heapify(int pos){
     int lpos = 2 * pos + 1;
     int rpos = 2 * pos + 2; 
-    if(lpos >= size)
+    if(lpos >= num)
         return;
-    else if (rpos >= size){
+    else if (rpos >= num){
         if(heap[lpos] >= heap[pos])
             return;
         swap(lpos, pos);
@@ -74,7 +75,7 @@ void BinaryHeap::popMin(){
     items[0] = items[size-1];
     loc[items[0]] = 0;
     heapify(0);
-    //size --;
+    num --;
 }
 
 
@@ -104,7 +105,7 @@ void BinaryHeap::decreasePriority(int item, double newPriority){
 }
 
 int BinaryHeap::getSize() const{
-    return size;
+    return num;
 }
 
 int BinaryHeap::getItem(int pos) const{
