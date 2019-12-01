@@ -87,18 +87,18 @@ void dijkstra(const int* const * adj, const double* const * weights, const int* 
     for(int i = 1; i < numVertices; i++){
 		for(int j = 0; j < lengths[curr] ;j++){
             double update = dist[curr] + weights[curr][j];
-			if(heap.contains(adj[curr][j]) && update < heap.getPriority(adj[curr][j])){
+			if(heap.contains(adj[curr][j]) && update < dist[adj[curr][j]]){
                 heap.decreasePriority(adj[curr][j], update);
                 prev[adj[curr][j]] = curr;
                 dist[adj[curr][j]] = update;
             }		
             
 		}
-      //  cout << "dist: " << dist[0] << " "<< dist[1] << " "<< dist[2] << " "<< dist[3] << endl;
+        //cout << "dist: " << dist[0] << " "<< dist[1] << " "<< dist[2] << " "<< dist[3] << endl;
         //cout << "prev: " << prev[0] << " "<<  prev[1] << " "<< prev[2]<< " " << prev[3]  << endl;
         //cout << "heap: " << heap.heap[0] << " "  << heap.heap[1] << " " << heap.heap[2] << " " << heap.heap[3]<< endl;
         curr = heap.getMin();
-       // cout << " curr: " << curr  << "\n" << endl;
+        //cout << " curr: " << curr  << "\n" << endl;
         dist[curr] = heap.getPriority(curr);
         heap.popMin();
     }
