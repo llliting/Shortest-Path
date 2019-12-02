@@ -3,5 +3,5 @@ GingerbreadPlumTrees
 CandyCastle
 LicoriceCastle
 PeanutBrittleHouse
-5.5 GumdropMountains
-2.9 LollipopWoods
+1 2 5.5 GumdropMountains
+2 3 2.9 LollipopWoods

@@ -41,8 +41,11 @@ int bellmanFord(const int* const * edges, const double* weights, int numVertices
 
     auto start = chrono::system_clock::now();
     int neg = bellmanFord(edgeList, weights, numVer, numEdges, source, distination, prev);
-    
     auto end = chrono::system_clock::now();
+    if(neg != -1){
+        cout << "error!!" << endl;
+        return 0;
+    }
     auto dur = end - start;
     auto durNS = chrono::duration_cast<chrono::nanoseconds>(dur);
     double elapsed = (double)durNS.count();
@@ -52,14 +55,15 @@ int bellmanFord(const int* const * edges, const double* weights, int numVertices
     fout << len+1 << " " << len-1 << endl;
     for(int i = 0; i < numVer; i ++)
         fout << vLabel[i] << endl;
-    
-    for(int i = 0; i < len-1; i++){
-        int j = 0;
-        for(; j < len; j ++){
-            if(adj[path[i]][j] == path[i+1])
-                break;
+    for(int j = 0; j < len; j ++){
+        for(int i = 0; i < numEdges; i ++){
+            if(edgeList[i][0] == path[j] && edgeList[i][1] == path[j+1])
+                fout << path[j] << " " << path[j+1] << " " << weights[i] << " " << eLabel[i] << endl;
+
         }
-        fout << weights[path[i]][j] << " " << eLabel[path[i]][j] << endl;
     }
+    
+    
+    
         
 }

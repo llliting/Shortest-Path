@@ -27,6 +27,9 @@ matrixd: matrixDijkstra.cpp readGraph.o shortestPath.o BinaryHeap.o
 listd: listDijkstra.cpp readGraph.o shortestPath.o BinaryHeap.o
 		$(CC) $(FLAGS) -o listDijkstra.exe listDijkstra.cpp readGraph.o shortestPath.o BinaryHeap.o
 
+bf: bellmanFord.cpp readGraph.o shortestPath.o BinaryHeap.o
+		$(CC) $(FLAGS) -o bellmanFord.exe bellmanFord.cpp readGraph.o shortestPath.o BinaryHeap.o
+
 binaryheap: BinaryHeap_TEST.cpp BinaryHeap.o
 		$(CC) $(FLAGS) -o binaryheap.exe BinaryHeap_TEST.cpp BinaryHeap.o
 		./binaryheap.exe
