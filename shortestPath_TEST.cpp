@@ -79,9 +79,32 @@ TEST_CASE("TESTING shortestPath Class ")
         } 
         */
         
+    }
+    
+    SECTION("TESTING bellmanford")
+    {  
+        int ** edgeList, numEdges;
+        double * weights;
+        string * vLabels, * eLabels;
+        ifstream input;
+        input.open("graph2.txt");
+        int numV = readGraph(input, edgeList, weights, numEdges, vLabels, eLabels);
+        double * dist;
+        int * prev;
+        int source = 0;
+        int negPath = bellmanFord(edgeList, weights, numV, numEdges, source, dist, prev);
+        REQUIRE(dist[0] == -3);
+        REQUIRE(prev[0] == 2);
+        delete [] dist;
+        delete [] prev;
+        delete [] weights;
+        delete [] vLabels;
+        delete [] eLabels;
+        for(int i = 0; i < numEdges; i ++){
+            delete [] edgeList[i];
+        }
         
 
     }
-    
     
 }

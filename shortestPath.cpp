@@ -125,5 +125,5 @@ int bellmanFord(const int* const * edges, const double* weights, int numVertices
 }
 
 int getCycle(int vertex, const int* prev, int numVertices, int*& cycle){
-
+    return 0;
 }
