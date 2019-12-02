@@ -34,4 +34,4 @@ test: test.cpp BinaryHeap.o
 		./test.exe
 		
 clean:
-		rm -f *.exe, *.o
+		rm -f *.exe *.o
