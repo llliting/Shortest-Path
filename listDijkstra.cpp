@@ -59,5 +59,16 @@ int main(int argc, char* argv[]){
         }
         fout << weights[path[i]][j] << " " << eLabel[path[i]][j] << endl;
     }
+    fin.close();
+    fout.close();
+    delete [] lengths;
+    delete [] distination;
+    delete [] vLabel;
+    delete [] prev;
+    delete [] path;
+    for(int i = 0; i < numVer; i ++){
+        delete [] adj[i];
+        delete [] weights[i];
+    }
         
 }

@@ -50,4 +50,15 @@ int main(int argc, char* argv[]){
     for(int i = 0; i < len-1; i++)
         fout << path[i] << " " << path[i+1] << " " << m[path[i]][path[i+1]] << " " << eLabel[path[i]][path[i+1]] << endl;
 
+    fin.close();
+    fout.close();
+    delete [] vLabel;
+    delete [] distination;
+    delete [] prev;
+    delete [] path;
+    for(int i = 0; i < numVer; i ++){
+        delete [] eLabel[i];
+        delete [] m[i];
+    }
+
 }
