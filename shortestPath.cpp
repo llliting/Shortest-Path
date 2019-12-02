@@ -98,8 +98,32 @@ void dijkstra(const int* const * adj, const double* const * weights, const int* 
         dist[curr] = heap.getPriority(curr);
         heap.popMin();
     }
-    
+}
 
-        
+int bellmanFord(const int* const * edges, const double* weights, int numVertices, int numEdges, int source, double*& dist, int*& prev){
+    dist = new double[numVertices];
+    prev = new int[numVertices];
+    for(int i = 0; i < numVertices; i++){
+        dist[i] = numeric_limits<double>::infinity();
+        prev[i] = -1;
+    }
+    dist[source] = 0;
+    for(int i = 1; i < numVertices-1; i ++){
+        for(int j = 0; j < numEdges; j++){
+            double update = weights[j] + dist[edges[j][0]];
+            if(update < dist[edges[j][1]]){
+                dist[edges[j][1]] = update;
+                prev[edges[j][1]] = edges[j][0];
+            }
+        }
+    } 
+    for(int i = 0; i < numEdges; i++){
+        if(dist[edges[i][1]] > dist[edges[i][0]] + weights[i])
+            return edges[i][1];
+    }
+    return -1;
+}
+
+int getCycle(int vertex, const int* prev, int numVertices, int*& cycle){
 
 }
