@@ -15,7 +15,6 @@ int main(int argc, char* argv[]){
         cout << "Wrong Number of Command Line Arguments Passed";
         return 0;
     }
-int bellmanFord(const int* const * edges, const double* weights, int numVertices, int numEdges, int source, double*& dist, int*& prev);
 
     string inGraph = argv[1];
     string output = argv[2];
@@ -47,9 +46,9 @@ int bellmanFord(const int* const * edges, const double* weights, int numVertices
         return 0;
     }
     auto dur = end - start;
-    auto durNS = chrono::duration_cast<chrono::nanoseconds>(dur);
+    auto durNS = chrono::duration_cast<chrono::microseconds>(dur);
     double elapsed = (double)durNS.count();
-    cout << "number of nanoseconds for djkstra's algo: " << elapsed << endl;
+    cout << "number of microseconds for bellmanFord's algo: " << elapsed << endl;
 
     int len = getPath(source, dist, prev, path);
     fout << len+1 << " " << len-1 << endl;

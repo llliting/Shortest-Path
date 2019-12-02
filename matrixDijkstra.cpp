@@ -38,9 +38,9 @@ int main(int argc, char* argv[]){
     dijkstra(m, numVer, source, distination, prev);
     auto end = chrono::system_clock::now();
     auto dur = end - start;
-    auto durNS = chrono::duration_cast<chrono::nanoseconds>(dur);
+    auto durNS = chrono::duration_cast<chrono::microseconds>(dur);
     double elapsed = (double)durNS.count();
-    cout << "number of nanoseconds for djkstra's algo: " << elapsed << endl;
+    cout << "number of microseconds for matrix djkstra's algo: " << elapsed << endl;
 
     int len = getPath(source, dist, prev, path);
     fout << len+1 << " " << len-1 << endl;
