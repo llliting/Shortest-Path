@@ -12,7 +12,7 @@ using namespace std;
 
 TEST_CASE("TESTING shortestPath Class ")
 {
-      /*
+      
     SECTION("TESTING dijkstra")
     {   
         double** matrix;
@@ -37,7 +37,7 @@ TEST_CASE("TESTING shortestPath Class ")
         delete [] prev;
         delete [] path;
 
-    }*/
+    }
     
   
     SECTION("TESTING dijkstra")
@@ -55,7 +55,14 @@ TEST_CASE("TESTING shortestPath Class ")
         REQUIRE(numV == 4);
         int source = 3;
         dijkstra(adj, weights, lengths, numV,3, dist, prev);
-  
+        REQUIRE(dist[0] == 9.5);
+        REQUIRE(prev[2] == 1);
+        int* path;
+        int num = getPath(source, 0, prev, path);
+        REQUIRE(num == 4);
+        delete [] dist;
+        delete [] prev;
+        delete [] path;
        
 
         /*
@@ -72,11 +79,6 @@ TEST_CASE("TESTING shortestPath Class ")
         } 
         */
         
-        REQUIRE(dist[0] == 9.5);
-        REQUIRE(prev[2] == 1);
-        int* path;
-        //int num = getPath(source, 0, prev, path);
-        //REQUIRE(num == 4);
         
 
     }

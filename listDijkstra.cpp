@@ -50,8 +50,14 @@ int main(int argc, char* argv[]){
     fout << len+1 << " " << len-1 << endl;
     for(int i = 0; i < numVer; i ++)
         fout << vLabel[i] << endl;
-
-    for(int i = 0; i < len-1; i++)
-        fout << path[i] << " " << path[i+1] << " " << adj[path[i]][path[i+1]] << " " << eLabel[path[i]][path[i+1]] << endl;
-
+    
+    for(int i = 0; i < len-1; i++){
+        int j = 0;
+        for(; j < len; j ++){
+            if(adj[path[i]][j] == path[i+1])
+                break;
+        }
+        fout << weights[path[i]][j] << " " << eLabel[path[i]][j] << endl;
+    }
+        
 }

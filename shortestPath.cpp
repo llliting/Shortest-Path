@@ -31,7 +31,6 @@ void dijkstra(const double* const * matrix, int numVertices, int source, double*
 
         //find the shortest path 
         double min = numeric_limits<double>::infinity();
-        //int minIdx;
         for(int j = 0; j < numVertices; j++){
             if( !sptSet[j] && dist[j] <= min){
                 min = dist[j];
@@ -64,6 +63,7 @@ int getPath(int source, int dest, const int* prev, int*& path){
 }
 
 
+
 void dijkstra(const int* const * adj, const double* const * weights, const int* lengths, int numVertices, int source, double*& dist, int*& prev){
     dist = new double[numVertices];
 	prev = new int[numVertices];
@@ -74,14 +74,10 @@ void dijkstra(const int* const * adj, const double* const * weights, const int* 
 
 
     BinaryHeap heap = BinaryHeap(dist, numVertices);
-
     heap.decreasePriority(source,0);
     heap.popMin();
     dist[source] = 0;
     //prev[source] = source;
-
-
-
 
     int curr = source;
     for(int i = 1; i < numVertices; i++){
