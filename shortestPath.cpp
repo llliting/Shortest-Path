@@ -125,5 +125,25 @@ int bellmanFord(const int* const * edges, const double* weights, int numVertices
 }
 
 int getCycle(int vertex, const int* prev, int numVertices, int*& cycle){
-    return 0;
+    bool* helper = new bool[numVertices];
+    for(int i = 0; i < numVertices; i++){
+        helper[i] = false;
+    }
+    int i = vertex;
+    int counter = 0;
+    while(!helper[i]){
+        cout << "i: " << i << endl;
+        helper[i] = true;
+        i = prev[i];
+        counter ++;
+    }
+    cycle = new int[counter];
+    int curr = vertex;
+    for(int i = counter-1; i >= 0; i-- ){
+        cycle[i] = curr;
+        curr = prev[curr];
+    }
+    cout << "counter: " << counter << endl;
+    delete [] helper;
+    return counter;
 }

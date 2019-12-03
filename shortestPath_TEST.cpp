@@ -81,7 +81,7 @@ TEST_CASE("TESTING shortestPath Class ")
         
     }
     
-    SECTION("TESTING bellmanford")
+    SECTION("TESTING bellmanford & getPath")
     {  
         int ** edgeList, numEdges;
         double * weights;
@@ -95,6 +95,19 @@ TEST_CASE("TESTING shortestPath Class ")
         int negPath = bellmanFord(edgeList, weights, numV, numEdges, source, dist, prev);
         REQUIRE(dist[0] == -3);
         REQUIRE(prev[0] == 2);
+        
+       
+
+         for(int j = 0; j < 4; j ++)
+                cout << prev[j] << " ";
+            cout << endl;
+
+        int* cycle;
+        int numCycles = getCycle(negPath, prev, numV, cycle);
+        cout << "numCycles: " << numCycles << endl;
+
+
+        delete [] cycle;
         delete [] dist;
         delete [] prev;
         delete [] weights;
@@ -103,8 +116,9 @@ TEST_CASE("TESTING shortestPath Class ")
         for(int i = 0; i < numEdges; i ++){
             delete [] edgeList[i];
         }
-        
 
     }
+
+    
     
 }
