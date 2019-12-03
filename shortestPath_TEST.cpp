@@ -94,11 +94,9 @@ TEST_CASE("TESTING shortestPath Class ")
         int source = 0;
         int negPath = bellmanFord(edgeList, weights, numV, numEdges, source, dist, prev);
         REQUIRE(dist[0] == -3);
-        REQUIRE(prev[0] == 2);
-        
+        REQUIRE(prev[0] == 2);        
        
-
-         for(int j = 0; j < 4; j ++)
+        for(int j = 0; j < 4; j ++)
                 cout << prev[j] << " ";
             cout << endl;
 

@@ -41,10 +41,22 @@ int main(int argc, char* argv[]){
     auto start = chrono::system_clock::now();
     int neg = bellmanFord(edgeList, weights, numVer, numEdges, source, distination, prev);
     auto end = chrono::system_clock::now();
+
     if(neg != -1){
-        cout << "error!!" << endl;
-        return 0;
+        int* cycle;
+        int len = getCycle(neg, prev, numVer, cycle);
+        cout << "Negative cycle detected!" << endl;
+        int weight = 0;
+        for(int i = 0; i < len-1; i ++){
+            for(int j = 0; j < numEdges; j++){
+                if(edgeList[j][0] == cycle[i] && edgeList[j][1] == cycle[i+1])
+                    weight += weights[j];
+            }
+        }
+        cout << "Total weight:" << weight << endl;
+        delete [] cycle;
     }
+
     auto dur = end - start;
     auto durNS = chrono::duration_cast<chrono::microseconds>(dur);
     double elapsed = (double)durNS.count();
@@ -61,7 +73,6 @@ int main(int argc, char* argv[]){
 
         }
     }
-    
     
     
         

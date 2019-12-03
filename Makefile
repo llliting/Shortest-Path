@@ -2,7 +2,7 @@ CC = g++
 FLAGS = -Wall -O0 -std=c++11
 DEBUG = --DDEBUG -g
 
-all: matrixd listd
+all: matrixd listd bf
 debug: readgraph shortestpath binaryheap
 readGraph.o: readGraph.cpp readGraph.hpp
 		$(CC) $(FLAGS) -c readGraph.cpp
