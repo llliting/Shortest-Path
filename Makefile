@@ -52,4 +52,5 @@ test: test.cpp BinaryHeap.o
 		./test.exe
 		
 clean:
-		rm -f *.exe *.o
+		rm -f *.exe *.info *.out *.txt *.o *.gcno *.gcda *.gcov *.dot
+		rm -f -r readGraph
