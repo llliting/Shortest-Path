@@ -16,8 +16,6 @@ BinaryHeap::BinaryHeap(const double* priorities, int numItems){
     for(int i = (numItems/2) - 1; i >= 0; i --)
         heapify(i);
         
-        
-    
 }
 
 void BinaryHeap::heapify(int pos){

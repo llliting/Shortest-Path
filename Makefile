@@ -4,6 +4,8 @@ DEBUG = --DDEBUG -g
 
 all: matrixd listd bf
 debug: readgraph shortestpath binaryheap
+cov: readgraph_cov
+
 readGraph.o: readGraph.cpp readGraph.hpp
 		$(CC) $(FLAGS) -c readGraph.cpp
 
@@ -33,6 +35,17 @@ bf: bellmanFord.cpp readGraph.o shortestPath.o BinaryHeap.o
 binaryheap: BinaryHeap_TEST.cpp BinaryHeap.o
 		$(CC) $(FLAGS) -o binaryheap.exe BinaryHeap_TEST.cpp BinaryHeap.o
 		./binaryheap.exe
+
+readgraph_cov: readGraph_TEST.cpp readGraph.hpp readGraph.o
+		g++ --coverage readGraph_TEST.cpp -o readgraph.out readGraph.o readGraph.hpp
+		./readgraph.out
+		gcov readGraph_TEST.cpp
+		gcov -f readGraph_TEST.cpp
+		gcov -b readGraph_TEST.cpp
+		lcov --directory . --zerocounters
+		./readgraph.out
+		lcov --directory . --capture --output-file readGraph.info
+		genhtml readGraph.info -o readGraph
 
 test: test.cpp BinaryHeap.o
 		$(CC) $(FLAGS) -o test.exe test.cpp BinaryHeap.o
