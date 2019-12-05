@@ -42,6 +42,7 @@ int main(int argc, char* argv[]){
     int neg = bellmanFord(edgeList, weights, numVer, numEdges, source, distination, prev);
     auto end = chrono::system_clock::now();
 
+
     if(neg != -1){
         int* cycle;
         int len = getCycle(neg, prev, numVer, cycle);
@@ -76,8 +77,8 @@ int main(int argc, char* argv[]){
 
     for(int i = 0; i < numEdges; i++){
         delete [] edgeList;
-
     }
+    
     delete [] weights;
     delete [] distination; 
     delete [] vLabel;
