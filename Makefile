@@ -4,7 +4,7 @@ DEBUG = --DDEBUG -g
 
 all: matrixd listd bf
 debug: readgraph shortestpath binaryheap
-cov: readgraph_cov
+cov: readgraph_cov binaryheap_cov shortestPath_cov
 
 readGraph.o: readGraph.cpp readGraph.hpp
 		$(CC) $(FLAGS) -c readGraph.cpp
@@ -36,8 +36,8 @@ binaryheap: BinaryHeap_TEST.cpp BinaryHeap.o
 		$(CC) $(FLAGS) -o binaryheap.exe BinaryHeap_TEST.cpp BinaryHeap.o
 		./binaryheap.exe
 
-readgraph_cov: readGraph_TEST.cpp readGraph.hpp readGraph.o
-		g++ --coverage readGraph_TEST.cpp -o readgraph.out readGraph.o readGraph.hpp
+readgraph_cov: readGraph_TEST.cpp readGraph.cpp
+		g++ --coverage readGraph_TEST.cpp -o readgraph.out readGraph.cpp 
 		./readgraph.out
 		gcov readGraph_TEST.cpp
 		gcov -f readGraph_TEST.cpp
@@ -47,10 +47,33 @@ readgraph_cov: readGraph_TEST.cpp readGraph.hpp readGraph.o
 		lcov --directory . --capture --output-file readGraph.info
 		genhtml readGraph.info -o readGraph
 
+binaryheap_cov:BinaryHeap_TEST.cpp BinaryHeap.cpp
+		g++ --coverage BinaryHeap_TEST.cpp -o BinaryHeap.out BinaryHeap.cpp 
+		./BinaryHeap.out
+		gcov BinaryHeap_TEST.cpp
+		gcov -f BinaryHeap_TEST.cpp
+		gcov -b BinaryHeap_TEST.cpp
+		lcov --directory . --zerocounters
+		./BinaryHeap.out
+		lcov --directory . --capture --output-file BinaryHeap.info
+		genhtml BinaryHeap.info -o BinaryHeap
+
+shortestPath_cov: shortestPath_TEST.cpp shortestPath.cpp BinaryHeap.hpp readGraph.cpp
+		g++ --coverage shortestPath_TEST.cpp -o shortestPath.out shortestPath.cpp BinaryHeap.cpp readGraph.cpp
+		./shortestPath.out
+		gcov shortestPath_TEST.cpp
+		gcov -f shortestPath_TEST.cpp
+		gcov -b shortestPath_TEST.cpp
+		lcov --directory . --zerocounters
+		./shortestPath.out
+		lcov --directory . --capture --output-file shortestPath.info
+		genhtml shortestPath.info -o shortestPath
+
+
 test: test.cpp BinaryHeap.o
 		$(CC) $(FLAGS) -o test.exe test.cpp BinaryHeap.o
 		./test.exe
 		
 clean:
-		rm -f *.exe *.info *.out *.txt *.o *.gcno *.gcda *.gcov *.dot
-		rm -f -r readGraph
+		rm -f *.html *.exe *.info *.out *.o *.gcno *.gcda *.gcov 
+		rm -f -r readGraph BinaryHeap shortestPath
