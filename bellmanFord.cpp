@@ -52,7 +52,9 @@ int main(int argc, char* argv[]){
             for(int j = 0; j < numEdges; j++){
                 if(edgeList[j][0] == cycle[i] && edgeList[j][1] == cycle[i+1])
                     weight += weights[j];
+                    cout << "w: " << weights[j] << endl;
             }
+            cout << "weight: " << weight << endl;
         }
         cout << "Total weight:" << weight << endl;
         delete [] cycle;
@@ -76,7 +78,7 @@ int main(int argc, char* argv[]){
     }
 
     for(int i = 0; i < numEdges; i++){
-        delete [] edgeList;
+        delete [] edgeList[i];
     }
     
     delete [] weights;

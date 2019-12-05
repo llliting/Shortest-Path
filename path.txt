@@ -1,7 +1,9 @@
-4 2
-GingerbreadPlumTrees
-CandyCastle
-LicoriceCastle
-PeanutBrittleHouse
-1 2 5.5 GumdropMountains
-2 3 2.9 LollipopWoods
+6 4
+v1
+v2
+v3
+v4
+0 3 -3 v1->v4
+3 1 -2 v4->v2
+1 2 -1 v2->v3
+2 0 3 v3->v1

@@ -12,7 +12,7 @@ using namespace std;
 
 
 int main(int argc, char* argv[]){
-    if (argc != 5) {
+    if (argc != 6) {
         cout << "Wrong Number of Command Line Arguments Passed";
         return 0;
     }
@@ -21,6 +21,7 @@ int main(int argc, char* argv[]){
     string output = argv[2];
     string source_str = argv[3];
     string dist_str = argv[4];
+    float cost = stof(argv[5]);
     int source, dist, ** edgeList, numEdges;
     double* distination, *weights;
     ifstream fin;
@@ -30,6 +31,10 @@ int main(int argc, char* argv[]){
     string* vLabel, *eLabel;
     int* prev, *path;
     int numVer = readGraph(fin, edgeList, weights, numEdges, vLabel, eLabel);
+    //double* rate = new double [numEdges];
+    for(int i = 0; i < numEdges; i++){
+        weights[i] = log(weights[i] * (1-cost));
+    }
 
 
     for(int i = 0; i < numVer; i++){
@@ -47,7 +52,7 @@ int main(int argc, char* argv[]){
     if(neg != -1){
         int* cycle;
         int len = getCycle(neg, prev, numVer, cycle);
-        cout << "Negative cycle detected!" << endl;
+        cout << "arbitrage opportunity detected!" << endl;
         int weight = 0;
         for(int i = 0; i < len-1; i ++){
             for(int j = 0; j < numEdges; j++){
@@ -55,7 +60,7 @@ int main(int argc, char* argv[]){
                     weight += weights[j];
             }
         }
-        cout << "Total weight:" << weight << endl;
+        cout << "Effective exchange rate:" << exp(weight) << endl;
         delete [] cycle;
     }
 
