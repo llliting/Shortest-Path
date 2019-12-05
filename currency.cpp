@@ -85,10 +85,7 @@ int main(int argc, char* argv[]){
         }
     }
 
-    for(int i = 0; i < numEdges; i++){
-        delete [] edgeList;
-    }
-    
+    delete [] edgeList;    
     delete [] weights;
     delete [] distination; 
     delete [] vLabel;
