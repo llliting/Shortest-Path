@@ -28,6 +28,7 @@ int main(int argc, char* argv[]){
     fout.open(output);
     string* vLabel, *eLabel;
     int* prev, *path;
+    int len;
     int numVer = readGraph(fin, edgeList, weights, numEdges, vLabel, eLabel);
 
 
@@ -41,32 +42,35 @@ int main(int argc, char* argv[]){
     auto start = chrono::system_clock::now();
     int neg = bellmanFord(edgeList, weights, numVer, numEdges, source, distination, prev);
     auto end = chrono::system_clock::now();
+    
 
-
+    
     if(neg != -1){
         int* cycle;
-        int len = getCycle(neg, prev, numVer, cycle);
+        len = getCycle(neg, prev, numVer, cycle);
         cout << "Negative cycle detected!" << endl;
         int weight = 0;
         for(int i = 0; i < len-1; i ++){
             for(int j = 0; j < numEdges; j++){
                 if(edgeList[j][0] == cycle[i] && edgeList[j][1] == cycle[i+1])
                     weight += weights[j];
-                    cout << "w: " << weights[j] << endl;
             }
-            cout << "weight: " << weight << endl;
         }
         cout << "Total weight:" << weight << endl;
-        delete [] cycle;
+        path = cycle;
     }
+    else{
+        len = getPath(source, dist, prev, path);
+    }
+
 
     auto dur = end - start;
     auto durNS = chrono::duration_cast<chrono::microseconds>(dur);
     double elapsed = (double)durNS.count();
     cout << "number of microseconds for bellmanFord's algo: " << elapsed << endl;
-
-    int len = getPath(source, dist, prev, path);
-    fout << len+1 << " " << len-1 << endl;
+    
+    
+    fout << numVer << " " << len-1 << endl;
     for(int i = 0; i < numVer; i ++)
         fout << vLabel[i] << endl;
     for(int j = 0; j < len; j ++){
@@ -87,7 +91,6 @@ int main(int argc, char* argv[]){
     delete [] eLabel;
     delete [] prev;
     delete [] path;
-    
     
         
 }

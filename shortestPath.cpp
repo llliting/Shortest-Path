@@ -130,12 +130,18 @@ int getCycle(int vertex, const int* prev, int numVertices, int*& cycle){
         helper[i] = false;
     }
     int i = vertex;
-    int counter = 0;
+    //int counter = 1;
     while(!helper[i]){
-        cout << "i: " << i << endl;
+       // cout << "i: " << i << endl;
         helper[i] = true;
         i = prev[i];
-        counter ++;
+        //counter ++;
+    }
+    int start = i;
+    int counter = 2;
+    while(prev[i]!=start){
+        i = prev[i];
+        counter++;
     }
     cycle = new int[counter];
     int curr = vertex;
@@ -143,7 +149,10 @@ int getCycle(int vertex, const int* prev, int numVertices, int*& cycle){
         cycle[i] = curr;
         curr = prev[curr];
     }
-    cout << "counter: " << counter << endl;
+    //for(int i = 0; i < counter; i ++)
+      //  cout << cycle[i] << "-> "; 
+    //cout << endl;
+    //cout << "counter: " << counter << endl;
     delete [] helper;
     return counter;
 }

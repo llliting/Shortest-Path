@@ -95,13 +95,15 @@ TEST_CASE("TESTING shortestPath Class ")
         int negPath = bellmanFord(edgeList, weights, numV, numEdges, source, dist, prev);
         REQUIRE(dist[0] == -3);
         REQUIRE(prev[0] == 2);        
+        //cout << "negpath" << negPath << endl;
        
-        for(int j = 0; j < 4; j ++)
-                cout << prev[j] << " ";
-            cout << endl;
+        //for(int j = 0; j < 4; j ++)
+          //      cout << dist[j] << " ";
+            //cout << endl;
 
         int* cycle;
         int numCycles = getCycle(negPath, prev, numV, cycle);
+        REQUIRE(numCycles == 5);
         cout << "numCycles: " << numCycles << endl;
 
 

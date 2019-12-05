@@ -36,6 +36,9 @@ binaryheap: BinaryHeap_TEST.cpp BinaryHeap.o
 		$(CC) $(FLAGS) -o binaryheap.exe BinaryHeap_TEST.cpp BinaryHeap.o
 		./binaryheap.exe
 
+currency: currency.cpp readGraph.o shortestPath.o BinaryHeap.o
+		$(CC) $(FLAGS) -o currency.exe currency.cpp readGraph.o shortestPath.o BinaryHeap.o
+
 readgraph_cov: readGraph_TEST.cpp readGraph.cpp
 		g++ --coverage readGraph_TEST.cpp -o readgraph.out readGraph.cpp 
 		./readgraph.out
