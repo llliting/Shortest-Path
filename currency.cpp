@@ -22,7 +22,7 @@ int main(int argc, char* argv[]){
     string source_str = argv[3];
     string dist_str = argv[4];
     float cost = stof(argv[5]);
-
+    cout << "cost: " << cost << endl;
     int source, dist, ** edgeList, numEdges;
     double* distination, *weights;
     ifstream fin;
@@ -33,9 +33,9 @@ int main(int argc, char* argv[]){
     int* prev, *path;
     int len;
     int numVer = readGraph(fin, edgeList, weights, numEdges, vLabel, eLabel);
-    double* logged = new double [numEdges];
+    double* logg = new double [numEdges];
     for(int i = 0; i < numEdges; i ++){
-        logged[i] = -log(weights[i]) * (1-cost);
+        logg[i] = -log(weights[i]) * (1-cost);
     }
 
 
@@ -47,7 +47,7 @@ int main(int argc, char* argv[]){
     }
 
     auto start = chrono::system_clock::now();
-    int neg = bellmanFord(edgeList, logged, numVer, numEdges, source, distination, prev);
+    int neg = bellmanFord(edgeList, logg, numVer, numEdges, source, distination, prev);
     auto end = chrono::system_clock::now();
     
 
@@ -74,12 +74,11 @@ int main(int argc, char* argv[]){
         fout << vLabel[i] << endl;
     
     double weight = 0;    
-    for(int j = 0; j < len; j ++){
+    for(int j = 0; j < len-1; j ++){
         for(int i = 0; i < numEdges; i ++){
             if(edgeList[i][0] == path[j] && edgeList[i][1] == path[j+1]){
-                //fout << path[j] << " " << path[j+1] << " " << weights[i] << " " << eLabel[i] << endl;
-                fout << path[j] << " " << path[j+1] << " " << exp(-logged[j]) << " " << eLabel[i] << endl;
-                weight += logged[i];
+                fout << path[j] << " " << path[j+1] << " " << weights[i] << " " << eLabel[i] << endl;
+                weight += logg[i];
             }
         }
     }
