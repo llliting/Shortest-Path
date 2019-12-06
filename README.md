@@ -10,26 +10,26 @@ $ make
 ### matrixDijkstra
 The program implements dijkstra algorithm by translating the given graph into adjacency matrix. The program takes in four command line argument inputs: the given graph, the output text file, the source vertex, and the end vertex. 
 ```
-$ ./matrixdijkstra.exe <given graph> <output txt file> <source vertex> <end vertex>
+$ ./matrixdijkstra.exe <given graph> <output txt file> <source vertex> <destination vertex>
 ```
 
 
 ### listDijkstra
 The program implements dijkstra algorithm by translating the given graph into adjacency list. The program takes in four command line argument inputs: the given graph, the output text file, the source vertex, and the end vertex. 
 ```
-$ ./listDijkstra.exe <given graph> <output txt file> <source vertex> <end vertex>
+$ ./listDijkstra.exe <given graph> <output txt file> <source vertex> <destination vertex>
 ``` 
 
 ### bellmanFord
 The program implements bellman ford algorithm to identify the shortes path, even with negative degree edges. The program takes in four command line argument inputs: the given graph, the output text file, the source vertex, and the end vertex. 
 ```
-$ ./bellmanFord.exe <given graph> <output txt file> <source vertex> <end vertex>
+$ ./bellmanFord.exe <given graph> <output txt file> <source vertex> <destination vertex>
 ``` 
 
 ### currency 
 The program implements bellman ford algorithm to identify the best currency exchange rate. The program takes in five command line argument inputs: the given graph, the output text file, the source currency, the end currency, and the transaction cost.
 ```
-$ ./currency.exe <given graph> <output txt file> <source vertex> <end vertex> <transaction cost>
+$ ./currency.exe <given graph> <output txt file> <source currency> <destination currency> <transaction cost>
 ``` 
 
 ### Unit Testing
