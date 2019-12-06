@@ -22,7 +22,6 @@ int main(int argc, char* argv[]){
     string source_str = argv[3];
     string dist_str = argv[4];
     float cost = stof(argv[5]);
-    cout << "cost: " << cost << endl;
     int source, dist, ** edgeList, numEdges;
     double* distination, *weights;
     ifstream fin;
