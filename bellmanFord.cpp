@@ -49,7 +49,7 @@ int main(int argc, char* argv[]){
         int* cycle;
         len = getCycle(neg, prev, numVer, cycle);
         cout << "Negative cycle detected!" << endl;
-        int weight = 0;
+        /*int weight = 0;
         for(int i = 0; i < len-1; i ++){
             for(int j = 0; j < numEdges; j++){
                 if(edgeList[j][0] == cycle[i] && edgeList[j][1] == cycle[i+1])
@@ -57,6 +57,7 @@ int main(int argc, char* argv[]){
             }
         }
         cout << "Total weight:" << weight << endl;
+        */
         path = cycle;
     }
     else{
@@ -73,13 +74,17 @@ int main(int argc, char* argv[]){
     fout << numVer << " " << len-1 << endl;
     for(int i = 0; i < numVer; i ++)
         fout << vLabel[i] << endl;
+    double weight = 0;
+        
     for(int j = 0; j < len; j ++){
         for(int i = 0; i < numEdges; i ++){
-            if(edgeList[i][0] == path[j] && edgeList[i][1] == path[j+1])
+            if(edgeList[i][0] == path[j] && edgeList[i][1] == path[j+1]){
                 fout << path[j] << " " << path[j+1] << " " << weights[i] << " " << eLabel[i] << endl;
-
+                weight += weights[i];
+            }
         }
     }
+    cout << "Total weight:" << weight << endl;
 
     for(int i = 0; i < numEdges; i++){
         delete [] edgeList[i];

@@ -50,15 +50,17 @@ int main(int argc, char* argv[]){
     fout << len+1 << " " << len-1 << endl;
     for(int i = 0; i < numVer; i ++)
         fout << vLabel[i] << endl;
-    
+    double weight = 0;
     for(int i = 0; i < len-1; i++){
         int j = 0;
         for(; j < len; j ++){
             if(adj[path[i]][j] == path[i+1])
                 break;
         }
+        weight += weights[path[i]][j]; 
         fout << weights[path[i]][j] << " " << eLabel[path[i]][j] << endl;
     }
+    cout << "total weight: " << weight << endl;
     fin.close();
     fout.close();
     delete [] lengths;

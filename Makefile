@@ -2,9 +2,9 @@ CC = g++
 FLAGS = -Wall -O0 -std=c++11
 DEBUG = --DDEBUG -g
 
-all: matrixd listd bf
+all: matrixd listd bf currency
 debug: readgraph shortestpath binaryheap
-cov: readgraph_cov binaryheap_cov shortestPath_cov
+coverage: readgraph_cov binaryheap_cov shortestPath_cov
 
 readGraph.o: readGraph.cpp readGraph.hpp
 		$(CC) $(FLAGS) -c readGraph.cpp

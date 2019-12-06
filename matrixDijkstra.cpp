@@ -47,8 +47,12 @@ int main(int argc, char* argv[]){
     for(int i = 0; i < numVer; i ++)
         fout << vLabel[i] << endl;
 
-    for(int i = 0; i < len-1; i++)
+    double weight = 0;
+    for(int i = 0; i < len-1; i++){
         fout << path[i] << " " << path[i+1] << " " << m[path[i]][path[i+1]] << " " << eLabel[path[i]][path[i+1]] << endl;
+        weight += m[path[i]][path[i+1]];
+    }
+    cout << "total weight: " << weight << endl; 
 
     fin.close();
     fout.close();
