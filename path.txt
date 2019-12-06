@@ -1,7 +1,11 @@
-4 2
-GingerbreadPlumTrees
-CandyCastle
-LicoriceCastle
-PeanutBrittleHouse
-1 2 5.5 GumdropMountains
-2 3 2.9 LollipopWoods
+6 3
+GBP
+EUR
+JPY
+CHF
+USD
+GLD
+2 5 1.45935 JPY->GLD
+5 4 188.062 GLD->USD
+4 2 2.18868 USD->JPY
+2 0 1.57069 JPY->GBP

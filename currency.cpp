@@ -22,7 +22,8 @@ int main(int argc, char* argv[]){
     string source_str = argv[3];
     string dist_str = argv[4];
     float cost = stof(argv[5]);
-    int source, dist, ** edgeList, numEdges, len;
+
+    int source, dist, ** edgeList, numEdges;
     double* distination, *weights;
     ifstream fin;
     ofstream fout;
@@ -30,10 +31,11 @@ int main(int argc, char* argv[]){
     fout.open(output);
     string* vLabel, *eLabel;
     int* prev, *path;
+    int len;
     int numVer = readGraph(fin, edgeList, weights, numEdges, vLabel, eLabel);
-    //double* rate = new double [numEdges];
-    for(int i = 0; i < numEdges; i++){
-        weights[i] = log(weights[i] * (1-cost));
+    double* logged = new double [numEdges];
+    for(int i = 0; i < numEdges; i ++){
+        logged[i] = -log(weights[i]) * (1-cost);
     }
 
 
@@ -45,22 +47,15 @@ int main(int argc, char* argv[]){
     }
 
     auto start = chrono::system_clock::now();
-    int neg = bellmanFord(edgeList, weights, numVer, numEdges, source, distination, prev);
+    int neg = bellmanFord(edgeList, logged, numVer, numEdges, source, distination, prev);
     auto end = chrono::system_clock::now();
+    
 
-
+    
     if(neg != -1){
-         int* cycle;
+        int* cycle;
         len = getCycle(neg, prev, numVer, cycle);
-        cout << "Effective Exchange Rate Detected!" << endl;
-        int weight = 0;
-        for(int i = 0; i < len-1; i ++){
-            for(int j = 0; j < numEdges; j++){
-                if(edgeList[j][0] == cycle[i] && edgeList[j][1] == cycle[i+1])
-                    weight += weights[j];
-            }
-        }
-        cout << "Effective Exchange Rate:" << exp(weight) << endl;
+        cout << "Arbitrage Opportunity Detected!" << endl;
         path = cycle;
     }
     else{
@@ -68,24 +63,32 @@ int main(int argc, char* argv[]){
     }
 
 
-
     auto dur = end - start;
     auto durNS = chrono::duration_cast<chrono::microseconds>(dur);
     double elapsed = (double)durNS.count();
     cout << "number of microseconds for bellmanFord's algo: " << elapsed << endl;
-
-    fout << len+1 << " " << len-1 << endl;
+    
+    
+    fout << numVer << " " << len-1 << endl;
     for(int i = 0; i < numVer; i ++)
         fout << vLabel[i] << endl;
+    
+    double weight = 0;    
     for(int j = 0; j < len; j ++){
         for(int i = 0; i < numEdges; i ++){
-            if(edgeList[i][0] == path[j] && edgeList[i][1] == path[j+1])
-                fout << path[j] << " " << path[j+1] << " " << weights[i] << " " << eLabel[i] << endl;
-
+            if(edgeList[i][0] == path[j] && edgeList[i][1] == path[j+1]){
+                //fout << path[j] << " " << path[j+1] << " " << weights[i] << " " << eLabel[i] << endl;
+                fout << path[j] << " " << path[j+1] << " " << exp(-logged[j]) << " " << eLabel[i] << endl;
+                weight += logged[i];
+            }
         }
     }
+    cout << "Effective Exchange Rate:" << exp(-weight) << endl;
 
-    delete [] edgeList;    
+    for(int i = 0; i < numEdges; i++){
+        delete [] edgeList[i];
+    }
+    
     delete [] weights;
     delete [] distination; 
     delete [] vLabel;
@@ -93,6 +96,11 @@ int main(int argc, char* argv[]){
     delete [] prev;
     delete [] path;
     
-    
         
 }
+
+
+
+
+
+
