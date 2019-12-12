@@ -1,4 +1,4 @@
-# project3-Liting Huang
+# Shortest Path
 The project implements three different algorithms to approach the shortest path problem: Dijkstra using adjacency matrix, Dijkstra using adjacency list, and the bellman ford algorithm. A binary heap program is written in conveinence of the implementation of the bellman ford algorithm. The program can write the graph and the path into a new file while outputting the running time for the algorithm and total weights on screen when given a graph. The last part of the project uses bellman ford to calculate the best currency rate.
 
 
